@@ -6,9 +6,9 @@ export function getCurrentTimeInItaly(): Date {
   // Create a date object with the current UTC time
   const now = new Date();
 
-  // Convert the UTC time to Italy's time
-  const offsetItaly = 2; // Italy is in Central European Summer Time (UTC+2), but you might need to adjust this based on Daylight Saving Time
-  now.setHours(now.getUTCHours() + offsetItaly);
+  // Convert the UTC time to Phoenix's time
+  const offsetPhoenix = -7; // Phoenix, Arizona is in Mountain Standard Time (UTC-7) year-round
+  now.setHours(now.getUTCHours() + offsetPhoenix);
 
   return now;
 }
@@ -19,14 +19,13 @@ export function formatTimeForItaly(date: Date): string {
     minute: "2-digit",
     second: "2-digit",
     hour12: true, // This will format the time in 12-hour format with AM/PM
-    timeZone: "Europe/Rome",
+    timeZone: "America/Phoenix",
   };
 
   let formattedTime = new Intl.DateTimeFormat("en-US", options).format(date);
 
-  // Append the time zone abbreviation. You can automate this with libraries like `moment-timezone`.
-  // For simplicity, here I'm just appending "CET", but do remember that Italy switches between CET and CEST.
-  formattedTime += " CET";
+  // Append the time zone abbreviation for Phoenix
+  formattedTime += " MST";
 
   return formattedTime;
 }
